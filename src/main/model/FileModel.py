@@ -7,7 +7,6 @@ from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from antlrParser.LanguageParser import LanguageParser
-from service import Word2VecModel
 
 class FileModel():
 	relative_path: str = None
@@ -52,21 +51,5 @@ class FileModel():
 		self.identifier_list_model = LanguageParser().parse_file(self.extension, self.content)
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
-		if Word2VecModel.instance.exists():
-			self.calculate_semantic_metrics()
 		self.identifier_dictionary_model.set_word_metrics(self.word_dictionary_model.get_dictionary())
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
-
-	def calculate_semantic_metrics(self):
-		self.set_word2vec_class_name()
-		self.set_word2vec_file_context_name()
-		self.word_dictionary_model.calculate_semantic_metrics()
-
-	def set_word2vec_class_name(self):
-		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
-		class_identifier_words: [str] = self.identifier_dictionary_model.get_filtered_words(class_identifiers)
-		Word2VecModel.instance.set_class_name(class_identifier_words)
-
-	def set_word2vec_file_context_name(self):
-		file_context_words: [str] = self.word_dictionary_model.get_dictionary_keys()
-		Word2VecModel.instance.set_file_context_name(file_context_words)

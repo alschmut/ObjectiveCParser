@@ -5,7 +5,6 @@ from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
-from service import Word2VecModel
 
 JSON_EXTENSION = ".c2s.json"
 CSV_EXTENSION = ".csv"
@@ -28,14 +27,8 @@ def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])
 	timer = Timer()
 	
-	if len(sys.argv) == 3:
-		model_path = PathExtractor().get_absolute_path(sys.argv[2])
-		if not PathValidator().is_valid_files([model_path]):
-			return
-		Word2VecModel.instance.set_model(model_path)
-	
-	if len(sys.argv) < 2 or len(sys.argv) > 3:
-		Logger().usage(f"python {script_name} <file_or_directory_path> [<word2vec.model>]")
+	if len(sys.argv) != 2:
+		Logger().usage(f"python {script_name} <file_or_directory_path>")
 		return
 
 	project_path = PathExtractor().get_absolute_path(sys.argv[1])
