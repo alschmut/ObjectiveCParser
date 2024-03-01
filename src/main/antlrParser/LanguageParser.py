@@ -2,17 +2,9 @@ from antlr4 import CommonTokenStream, ParseTreeWalker, InputStream
 from antlrParser.Language import Language
 from antlrParser.Language import Language
 
-from antlrParser.Java.JavaLexer import JavaLexer
-from antlrParser.Java.JavaParser import JavaParser
-from antlrParser.ExtendedListener.JavaParserListenerExtended import JavaParserListenerExtended
-
-from antlrParser.Java9.Java9Lexer import Java9Lexer
-from antlrParser.Java9.Java9Parser import Java9Parser
-from antlrParser.ExtendedListener.Java9ListenerExtended import Java9ListenerExtended
-
-from antlrParser.Kotlin.KotlinLexer import KotlinLexer
-from antlrParser.Kotlin.KotlinParser import KotlinParser
-from antlrParser.ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
+from antlrParser.Objc.ObjectiveCLexer import ObjectiveCLexer
+from antlrParser.Objc.ObjectiveCParser import ObjectiveCParser
+from antlrParser.ExtendedListener.ObjcParserListenerExtended import ObjcParserListenerExtended
 
 class LanguageParser():
 
@@ -23,34 +15,16 @@ class LanguageParser():
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
         return listener.get_identifiers()
-
-    def parse_java_file(self, input_stream: InputStream):
-        lexer = JavaLexer(input_stream)
+    
+    def parse_objc_file(self, input_stream: InputStream):
+        lexer = ObjectiveCLexer(input_stream)
         stream = CommonTokenStream(lexer)
-        parser = JavaParser(stream)
-        tree = parser.compilationUnit()
-        listener = JavaParserListenerExtended()
-        return self.walk(listener, tree)
-
-    def parse_java9_file(self, input_stream: InputStream):
-        lexer = Java9Lexer(input_stream)
-        stream = CommonTokenStream(lexer)
-        parser = Java9Parser(stream)
-        tree = parser.compilationUnit()
-        listener = Java9ListenerExtended()
-        return self.walk(listener, tree)
-
-    def parse_kotlin_file(self, input_stream: InputStream):
-        lexer = KotlinLexer(input_stream)
-        stream = CommonTokenStream(lexer)
-        parser = KotlinParser(stream)
-        tree = parser.kotlinFile()
-        listener = KotlinParserListenerExtended()
+        parser = ObjectiveCParser(stream)
+        tree = parser.translationUnit()
+        listener = ObjcParserListenerExtended()
         return self.walk(listener, tree)
 
     def parse_file(self, file_extension: [str], file_content: str):
         input_stream = InputStream(file_content)
-        if file_extension == Language.Java.value:
-            return LanguageParser.parse_java_file(self, input_stream)
-        elif file_extension == Language.Kotlin.value:
-            return LanguageParser.parse_kotlin_file(self, input_stream)
+        if file_extension == Language.ObjcHeader.value or file_extension == Language.ObjcImplementation.value:
+            return LanguageParser.parse_objc_file(self, input_stream)

@@ -95,33 +95,11 @@ Depending on what you have already installed you might need to install more or l
 
   `python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose`
 
-- Install [Gensim](https://github.com/rare-technologies/gensim)
-
-  `pip3 install -U gensim`
-
-- Install [spaCy](https://github.com/explosion/spaCy) module and its english vocabulary
-
-  `pip3 install -U spacy`
-  
-  `python3 -m spacy download en`
-
-- Download the NLTK python tool kit together with its english stopword list
+- Install [antlr4](https://wwwpyt.antlr.org). This allows using the predefined antlr4 parser
 
   ```
-  pip3 install nltk 
-  python3
-  >>> import nltk
-  >>> nltk.download('stopwords')
-  ```
-
-- Install the [antlr4](https://www.antlr.org) runnable and add it to the classpath. This allows using the predefined antlr4 parser
-
-  ```
-  cd /usr/local/lib
-  sudo curl -O https://www.antlr.org/download/antlr-4.7.2-complete.jar
-  export CLASSPATH=".:/usr/local/lib/antlr-4.7.2-complete.jar:$CLASSPATH"
-  alias antlr4='java -jar /usr/local/lib/antlr-4.7.2-complete.jar'
-  pip install antlr4-python3-runtime
+  pip3 install antlr4-python3-runtime
+  pip3 install antlr4-tools
   ```
 
 ## How to get a Word2Vec model using Wikipedia data
