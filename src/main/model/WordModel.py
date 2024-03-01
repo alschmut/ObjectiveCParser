@@ -18,13 +18,6 @@ class WordModel():
             self.metrics["identifier_frequency_per_file"] = self.frequency
             self.metrics["number_of_separated_words"] = len(self.separated_words)
 
-    def to_print(self):
-        return {
-            "frequency": self.frequency,
-            "separated_words": self.separated_words,
-            "metrics": {key: value for (key, value) in self.metrics.items()}
-        }
-
     def to_csv(self, relative_path, name):
         csv_line = [relative_path + "/" + name]
         csv_line += [value for (key, value) in self.metrics.items()]

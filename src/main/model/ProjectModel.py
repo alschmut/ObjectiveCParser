@@ -16,9 +16,6 @@ class ProjectModel():
 		self.project_path = project_path
 		self.supported_extensions = LanguageParser().get_supported_extensions()
 
-	def to_print(self):
-		return [file.to_print() for file in self.files]
-
 	def to_csv(self):
 		content = [self.files[0].identifier_dictionary_model.get_first_word_model().get_csv_header()]
 		content += [file.to_csv() for file in self.files]

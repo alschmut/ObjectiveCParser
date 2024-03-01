@@ -29,14 +29,6 @@ class FileModel():
 		self.file_name = PathExtractor().get_file_name(path)
 		self.extension = PathExtractor().get_file_extension(self.file_name)
 
-	def to_print(self):
-		return {
-			"relative_path": self.relative_path,
-			"identifier_list": self.identifier_list_model.to_print(),
-			"identifier_dictionary": self.identifier_dictionary_model.to_print(),
-			"word_dictionary": self.word_dictionary_model.to_print()
-		}
-
 	def to_csv(self):
 		content = [identifier.to_csv(self.relative_path, name) for (name, identifier) in self.identifier_dictionary_model.get_dictionary().items()]
 		return "".join(content)

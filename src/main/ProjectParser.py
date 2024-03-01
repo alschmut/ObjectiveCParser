@@ -6,7 +6,6 @@ from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
 
-JSON_EXTENSION = ".c2s.json"
 CSV_EXTENSION = ".csv"
 
 def parse(project_path: str):
@@ -20,7 +19,6 @@ def parse(project_path: str):
 	else:
 		Logger().info("Parse file")
 		project_model.parse_file()
-	FileOpener().save_file_as_json(project_model.to_print(), project_name + JSON_EXTENSION)
 	FileOpener().save_file_as_csv(project_model.to_csv(), project_name + CSV_EXTENSION)
 
 def main():

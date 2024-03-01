@@ -8,9 +8,6 @@ class IdentifierDictionaryModel():
 		self.dictionary = {}
 		self.create_dictionary(identifier_list_model)
 
-	def to_print(self):
-		return { name: word_model.to_print() for name, word_model in self.dictionary.items() }
-
 	def get_dictionary(self):
 		return self.dictionary
 

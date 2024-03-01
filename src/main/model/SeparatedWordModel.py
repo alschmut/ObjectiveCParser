@@ -20,11 +20,5 @@ class SeparatedWordModel():
     def get_metric_by_key(self, key):
         return self.metrics.get(key)
 
-    def to_print(self):
-        return {
-            "lemmatized_word": self.lemmatized_word,            
-            "metrics": {key: metric_model.to_print() for (key, metric_model) in self.metrics.items()},
-        }
-
     def increment_frequency(self):
         self.metrics["word_frequency_per_file"].increment_value_by_1()

@@ -9,13 +9,6 @@ class IdentifierModel():
 		self.name = name
 		self.line = line
 		self.type = type
-	
-	def to_print(self):
-		return {
-            "name": self.name,
-			"type": self.type.value,
-            "line": self.line
-        }
 
 	def get_name(self):
 		return self.name

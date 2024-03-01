@@ -12,15 +12,12 @@ class ProjectModelTest(unittest.TestCase):
     project_name = "ExampleJavaClass"
     project_output_file = project_name + ".json"
     project_model: ProjectModel = None
-    project_print = None
 
     @classmethod
     def setUpClass(cls):
         cls.ignore_numpy_warning()
         cls.project_model = ProjectModel(cls.path)
         cls.project_model.parse_file()
-        cls.project_print = cls.project_model.to_print()
-        FileOpener().save_file_as_json(cls.project_print, cls.project_output_file)
 
     @classmethod
     def ignore_numpy_warning(cls):
@@ -32,28 +29,6 @@ class ProjectModelTest(unittest.TestCase):
     def test_file_has_correct_path(self):
         file = self.project_model.files[0]
         self.assertEqual(file.path, self.path)
-
-    def test_file_has_10_identifiers_in_list(self):
-        file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_list_model.to_print()), 10)
-
-    def test_file_has_1_class_identifier(self):
-        file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)), 1)
-
-    def test_file_has_correct_class_name(self):
-        file = self.project_model.files[0]
-        first_class_identifier = file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)[0]
-        self.assertEqual(first_class_identifier.get("name"), "ExampleJavaClass")   
-
-    def test_file_has_correct_class_name_line(self):
-        file = self.project_model.files[0]
-        first_class_identifier = file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)[0]
-        self.assertEqual(first_class_identifier.get("line"), 3)
-
-    def test_file_has_4_method_names(self):
-        method_identifiers = self.project_model.files[0].identifier_list_model.get_filtered_identfiers(IdentifierType.Method)
-        self.assertEqual(len(method_identifiers), 4)
 
     def test_file_has_9_dictionary_entries(self):
         dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
