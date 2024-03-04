@@ -40,5 +40,7 @@ class LanguageParser():
         input_stream = InputStream(file_content)
         if file_extension == Language.ObjcHeader.value or file_extension == Language.ObjcImplementation.value:
             return LanguageParser.parse_objc_file(self, input_stream)
+        else:
+            return []
         # elif file_extension == Language.Swift.value:
         #     return LanguageParser.parse_swift_file(self, input_stream)
