@@ -25,11 +25,8 @@ class FileModel():
 		self.extension = PathExtractor().get_file_extension(self.file_name)
 
 	def to_csv(self):
-		content = [method.to_csv(self.relative_path, method.name) for method in self.methods]
-		return "".join(content)
-	
-	def get_csv_header(self):
-		return self.methods[0].get_csv_header()
+		csv_content: [str] = [method.to_csv(self.relative_path, method.name) for method in self.methods]
+		return "".join(csv_content)
 
 	def is_valid(self):
 		if self.extension in self.supported_extensions:
@@ -39,4 +36,5 @@ class FileModel():
 	def parse(self):
 		Logger().start_analyzing(self.relative_path)
 		self.methods = LanguageParser().parse_file(self.extension, self.content)
+		self.content = None
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
