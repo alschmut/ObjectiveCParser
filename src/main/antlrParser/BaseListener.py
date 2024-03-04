@@ -1,10 +1,14 @@
-from model.IdentifierListModel import IdentifierListModel
+from model.MethodModel import MethodModel
+from model.IdentifierType import IdentifierType
 
 class BaseListener():
-    identifiers = None
+    methods: [MethodModel] = None
 
     def __init__(self):
-        self.identifiers = IdentifierListModel()
+        self.methods = []
 
-    def get_identifiers(self):
-        return self.identifiers
+    def get_methods(self):
+        return self.methods
+    
+    def add_method(self, name: str, line_start: int, line_stop: int, type: IdentifierType):
+        return self.methods.append(MethodModel(name, line_start, line_stop, type))

@@ -2,8 +2,6 @@
 import os
 from antlrParser.LanguageParser import LanguageParser
 from model.FileModel import FileModel
-from model.WordModel import WordModel
-from util.Logger import Logger
 
 class ProjectModel():
 	files: [FileModel] = None
@@ -17,7 +15,7 @@ class ProjectModel():
 		self.supported_extensions = LanguageParser().get_supported_extensions()
 
 	def to_csv(self):
-		content = [self.files[0].identifier_dictionary_model.get_first_word_model().get_csv_header()]
+		content = [self.files[0].get_csv_header()]
 		content += [file.to_csv() for file in self.files]
 		return "".join(content)
 

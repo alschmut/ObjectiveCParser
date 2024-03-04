@@ -14,7 +14,7 @@ class LanguageParser():
     def walk(self, listener, tree):
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.get_identifiers()
+        return listener.get_methods()
     
     def parse_objc_file(self, input_stream: InputStream):
         lexer = ObjectiveCLexer(input_stream)
