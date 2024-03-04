@@ -5,3 +5,4 @@ class Language(Enum):
 	Kotlin = "kt"
 	ObjcHeader = "h"
 	ObjcImplementation = "m"
+	Swift = "swift"
