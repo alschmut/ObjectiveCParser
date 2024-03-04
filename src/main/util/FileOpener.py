@@ -10,13 +10,6 @@ class FileOpener():
         except Exception as err:
             Logger().error(f"Could not open file: {type(err)}: {err}")
             return None
-
-    def get_new_file(self, file_path: str, flags: str = "w"):
-        return open(file_path, flags)
-
-    def save_file_as_json(self, project, output_file_name: str):
-        with open(output_file_name, "w") as file:
-            file.write(json.dumps(project))
     
     def save_file_as_csv(self, project, output_file_name: str):
         with open(output_file_name, "w") as file:

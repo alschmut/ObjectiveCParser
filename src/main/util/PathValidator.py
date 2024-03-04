@@ -3,15 +3,6 @@ from util.Logger import Logger
 
 class PathValidator():
 
-    def is_valid_files(self, file_paths: [str], silent: bool = False):
-        all_files_valid: bool = True
-        for path in file_paths:
-            if not os.path.isfile(path):
-                all_files_valid = False
-                if not silent:
-                    Logger().error(f"Could not find file: '{path}'")
-        return all_files_valid
-
     def is_valid_directories(self, dir_paths: [str], silent: bool = False):
         all_directories_valid: bool = True
         for path in dir_paths:
