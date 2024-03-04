@@ -4,19 +4,20 @@ from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from antlrParser.LanguageParser import LanguageParser
 from model.MethodModel import MethodModel
+from typing import List
 
 class FileModel():
 	relative_path: str = None
-	methods: [MethodModel] = None
+	methods: List[MethodModel] = None
 
 	path: str = None
-	supported_extensions: [str] = None
+	supported_extensions: List[str] = None
 	file_name: str = None
 	extension: str = None
 	timer: Timer = None
 	content: str = None
 
-	def __init__(self, path: str, supported_extensions: [int]):
+	def __init__(self, path: str, supported_extensions: List[int]):
 		self.timer = Timer()
 		self.path = path
 		self.relative_path = PathExtractor().get_relative_path(path)
@@ -25,7 +26,7 @@ class FileModel():
 		self.extension = PathExtractor().get_file_extension(self.file_name)
 
 	def to_csv(self):
-		csv_content: [str] = [method.to_csv(self.relative_path, method.name) for method in self.methods]
+		csv_content: List[str] = [method.to_csv(self.relative_path, method.name) for method in self.methods]
 		return "".join(csv_content)
 
 	def is_valid(self):

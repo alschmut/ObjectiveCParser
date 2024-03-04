@@ -1,17 +1,13 @@
-from model.MetricModel import MetricModel
-from model.IdentifierType import IdentifierType
 
 class MethodModel():
     name: str = None
     line_start: int = None
     line_stop: int = None
-    type: IdentifierType = None
 
-    def __init__(self, name: str, line_start: int, line_stop: int, type: IdentifierType):
+    def __init__(self, name: str, line_start: int, line_stop: int):
         self.name = name
         self.line_start = line_start
         self.line_stop = line_stop
-        self.type = type
 
     def metrics(self):
         return {

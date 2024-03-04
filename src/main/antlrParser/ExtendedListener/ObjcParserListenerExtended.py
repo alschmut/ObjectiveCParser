@@ -1,13 +1,12 @@
 from antlrParser.Objc.ObjectiveCParserListener import ObjectiveCParserListener
 from antlrParser.BaseListener import BaseListener
 from antlrParser.Objc.ObjectiveCParser import ObjectiveCParser
-from model.IdentifierType import IdentifierType
 
 class ObjcParserListenerExtended(ObjectiveCParserListener, BaseListener):
 
 	def enterMethodDefinition(self, ctx):
 		method_name = self.getMethodName(ctx)
-		self.add_method(str(method_name), ctx.start.line, ctx.stop.line, IdentifierType.Method)
+		self.add_method(str(method_name), ctx.start.line, ctx.stop.line)
 
 	def getMethodName(self, ctx: ObjectiveCParser.MethodDefinitionContext):
 		selectorContext = ctx.methodSelector().selector()

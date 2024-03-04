@@ -3,8 +3,6 @@ import sys, os, unittest, warnings
 sys.path.append(os.path.join(os.path.dirname(__file__), '../main'))
 
 from model.ProjectModel import ProjectModel
-from util.FileOpener import FileOpener
-from model.IdentifierType import IdentifierType
 
 class ProjectModelTest(unittest.TestCase):
 

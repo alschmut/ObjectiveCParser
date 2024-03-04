@@ -3,13 +3,13 @@ import os
 from antlrParser.LanguageParser import LanguageParser
 from model.FileModel import FileModel
 from model.MethodModel import MethodModel
-from model.IdentifierType import IdentifierType
+from typing import List
 
 class ProjectModel():
-	files: [FileModel] = None
+	files: List[FileModel] = None
 	
 	project_path: str = None
-	supported_extensions: [int] = None
+	supported_extensions: List[int] = None
 
 	def __init__(self, project_path: str):
 		self.files = []
@@ -17,8 +17,8 @@ class ProjectModel():
 		self.supported_extensions = LanguageParser().get_supported_extensions()
 
 	def to_csv(self):
-		csv_header = MethodModel("", 0, 0, IdentifierType.Method).get_csv_header()
-		content: [str] = [csv_header]
+		csv_header = MethodModel("", 0, 0).get_csv_header()
+		content = [csv_header]
 		content += [file.to_csv() for file in self.files]
 		return "".join(content)
 
