@@ -1,13 +1,11 @@
-# *ObjectiveCParser*
+# ObjectiveCParser
 
-*ObjectiveCParser* performs a static analysis on Objective-C code to calculate the metric *lines of code per method*. The result is written to a *.csv file. *ObjectiveCParser* is a python script, which uses a generated [antlr4](https://wwwpyt.antlr.org) parser for the given Objective-C language grammar from [antlr-grammars-v4](https://github.com/antlr/grammars-v4).
+ObjectiveCParser performs a static analysis on Objective-C code to calculate the metric *lines of code per method*. The result is written to a *.csv file. ObjectiveCParser is a python script, which uses a generated [antlr4](https://wwwpyt.antlr.org) parser for the given Objective-C language grammar from [antlr-grammars-v4](https://github.com/antlr/grammars-v4).
 
 > Please star this repository, if you found the project helpful :)
 
 ## Installation Requirements
-Make sure python3 (including pip3) is installed.
-
-Install [antlr4](https://wwwpyt.antlr.org), which enables parsing source code.
+Make sure python3 (including pip3) is installed. Install [antlr4](https://wwwpyt.antlr.org), which enables parsing source code.
 ```sh
 pip3 install antlr4-python3-runtime
 pip3 install antlr4-tools
@@ -26,7 +24,7 @@ This generates a `*.csv` file with the below structure:
 |/path/to/MyFile.m/someMethod       |1
 |/path/to/MyFile.m/anotherMethod    |5
 
-## How to add a new programming language with antlr4
+## How to add a new programming language to be analysed with antlr4
 
 ### Generate Python classes for a new grammar
 - Find the <new_language> grammar on [antlr-grammars-v4](https://github.com/antlr/grammars-v4)
