@@ -1,4 +1,3 @@
-import json
 from util.Logger import Logger
 
 class FileOpener():

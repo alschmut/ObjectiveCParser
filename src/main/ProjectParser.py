@@ -1,12 +1,10 @@
-import sys, os, time, json
+import sys
 from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
-
-CSV_EXTENSION = ".csv"
 
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
@@ -19,7 +17,7 @@ def parse(project_path: str):
 	else:
 		Logger().info("Parse file")
 		project_model.parse_file()
-	FileOpener().save_file_as_csv(project_model.to_csv(), project_name + CSV_EXTENSION)
+	FileOpener().save_file_as_csv(project_model.to_csv(), project_name + ".csv")
 
 def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])

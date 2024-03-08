@@ -1,5 +1,3 @@
-import time
-
 class Logger():
 
     def info(self, message: str):
