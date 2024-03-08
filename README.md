@@ -24,6 +24,12 @@ This generates a `*.csv` file with the below structure:
 |/path/to/MyFile.m/someMethod       |1
 |/path/to/MyFile.m/anotherMethod    |5
 
+## How to visualise the metrics?
+I can reccommend using the Open-Source tool [CodeCharta](https://github.com/MaibornWolff/codecharta), which visualises metrics with a 3D city. Just follow the below steps:
+1. `npm i -g codecharta-analysis`
+1. `ccsh csvimport -d=";" -o MyObjectiveCProject.cc.json MyObjectiveCProject.csv`
+1. Open the [CodeCharta Web Demo](https://maibornwolff.github.io/codecharta/visualization/app/index.html?file=codecharta.cc.json.gz&file=codecharta_analysis.cc.json.gz) and import the generated `MyObjectiveCProject.cc.json` file
+
 ## How to add a new programming language to be analysed with antlr4
 
 ### Generate Python classes for a new grammar
