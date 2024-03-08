@@ -7,10 +7,6 @@ from antlrParser.Objc.ObjectiveCLexer import ObjectiveCLexer
 from antlrParser.Objc.ObjectiveCParser import ObjectiveCParser
 from antlrParser.ExtendedListener.ObjcParserListenerExtended import ObjcParserListenerExtended
 
-# from antlrParser.Swift5.Swift5Lexer import Swift5Lexer
-# from antlrParser.Swift5.Swift5Parser import Swift5Parser
-# from antlrParser.ExtendedListener.Swift5ParserListenerExtended import Swift5ParserListenerExtended
-
 class LanguageParser():
 
     def get_supported_extensions(self):
@@ -28,14 +24,6 @@ class LanguageParser():
         tree = parser.translationUnit()
         listener = ObjcParserListenerExtended()
         return self.walk(listener, tree)
-    
-    def parse_swift_file(self, input_stream: InputStream):
-        lexer = Swift5Lexer(input_stream)
-        stream = CommonTokenStream(lexer)
-        parser = Swift5Parser(stream)
-        tree = parser.translationUnit()
-        listener = Swift5ParserListenerExtended()
-        return self.walk(listener, tree)
 
     def parse_file(self, file_extension: List[str], file_content: str):
         input_stream = InputStream(file_content)
@@ -43,5 +31,3 @@ class LanguageParser():
             return LanguageParser.parse_objc_file(self, input_stream)
         else:
             return []
-        # elif file_extension == Language.Swift.value:
-        #     return LanguageParser.parse_swift_file(self, input_stream)
