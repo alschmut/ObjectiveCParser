@@ -6,7 +6,8 @@ class ObjcParserListenerExtended(ObjectiveCParserListener, BaseListener):
 
 	def enterMethodDefinition(self, ctx):
 		method_name = self.getMethodName(ctx)
-		self.add_method(str(method_name), ctx.start.line, ctx.stop.line)
+		stop_line_without_closing_bracket = ctx.stop.line - 1
+		self.add_method(str(method_name), ctx.start.line, stop_line_without_closing_bracket)
 
 	def getMethodName(self, ctx: ObjectiveCParser.MethodDefinitionContext):
 		selectorContext = ctx.methodSelector().selector()
